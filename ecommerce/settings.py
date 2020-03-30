@@ -25,7 +25,8 @@ SECRET_KEY = 'jj6&4d8h)nknzq&2h()*^@3hhw03e7mqgh(zctx%2o+ba83h&@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-fc5d6556-ebd6-4178-a321-e076e2c9f00d.ws-eu01.gitpod.io']
+ALLOWED_HOSTS = [
+    '8000-fc5d6556-ebd6-4178-a321-e076e2c9f00d.ws-eu01.gitpod.io', 'localhost']
 
 
 # Application definition
@@ -39,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
     'accounts',
+    'cart',
+    'search',
+    'products'
 
 
 ]
@@ -66,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+                'cart.contexts.cart_contents'
             ],
         },
     },
@@ -125,5 +131,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
