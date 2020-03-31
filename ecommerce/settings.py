@@ -28,7 +28,7 @@ SECRET_KEY = 'jj6&4d8h)nknzq&2h()*^@3hhw03e7mqgh(zctx%2o+ba83h&@'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-fc5d6556-ebd6-4178-a321-e076e2c9f00d.ws-eu01.gitpod.io', 'localhost' 'matthews-e-commerce.herokuapp.com']
+    'matthews-e-commerce.herokuapp.com']
 
 
 # Application definition
