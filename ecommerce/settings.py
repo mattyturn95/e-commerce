@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = [os.environ.get('SECRET_KEY')]
+SECRET_KEY = 'jj6&4d8h)nknzq&2h()*^@3hhw03e7mqgh(zctx%2o+ba83h&@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,7 +94,17 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 #     }
 # }
 
-DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+if "DATABASE_URL" in os.environ:
+    DATABASES = {'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL'))}
+else:
+    print("Database URL not found. Using SQLite instead")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
